@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Warplanes"
+run/main_scene="uid://dxh8fy71h0jd1"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [display]
 

@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dxh8fy71h0jd1"]
+
+[ext_resource type="Script" uid="uid://bp8cidk6p8wd8" path="res://MenuFolder/menu.gd" id="1_xu0io"]
+
+[node name="Menu" type="Node2D" unique_id=1373165967]
+script = ExtResource("1_xu0io")
+
+[node name="Play" type="Button" parent="." unique_id=1825282311]
+custom_minimum_size = Vector2(320, 60)
+offset_left = 435.0
+offset_top = 205.0
+offset_right = 778.0
+offset_bottom = 283.0
+text = "Играть"
+
+[node name="Settings" type="Button" parent="." unique_id=1765997868]
+custom_minimum_size = Vector2(320, 60)
+offset_left = 435.0
+offset_top = 363.0
+offset_right = 778.0
+offset_bottom = 441.0
+text = "Настройки"
+
+[node name="Quit" type="Button" parent="." unique_id=957886667]
+custom_minimum_size = Vector2(320, 60)
+offset_left = 435.0
+offset_top = 519.0
+offset_right = 778.0
+offset_bottom = 597.0
+text = "Выйти
+"
+
+[node name="GameName" type="Label" parent="." unique_id=2052450514]
+custom_minimum_size = Vector2(320, 60)
+offset_left = 435.0
+offset_top = 108.0
+offset_right = 778.0
+offset_bottom = 172.3125
+text = "W A R P L A N E S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
