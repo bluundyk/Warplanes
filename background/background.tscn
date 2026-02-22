@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://djfw15f03x7nb"]
+
+[ext_resource type="Script" uid="uid://cnjc087xpvtlf" path="res://background/background.gd" id="1_eva80"]
+[ext_resource type="Texture2D" uid="uid://c8d8j08rlc0km" path="res://Large 1024x1024/Purple Nebula/Purple_Nebula_01-1024x1024.png" id="2_r0sni"]
+
+[node name="bg" type="ParallaxBackground" unique_id=400302099]
+script = ExtResource("1_eva80")
+
+[node name="bgLayer" type="ParallaxLayer" parent="." unique_id=1472531354]
+motion_mirroring = Vector2(0, 720)
+
+[node name="PurpleNebula011024x1024" type="Sprite2D" parent="bgLayer" unique_id=1513173991]
+texture_filter = 3
+position = Vector2(640, 357)
+scale = Vector2(1.2558594, 0.7050781)
+texture = ExtResource("2_r0sni")

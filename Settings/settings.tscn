@@ -1,3 +1,17 @@
 [gd_scene format=3 uid="uid://cidnt0pqg8eti"]
 
+[ext_resource type="Script" uid="uid://drquc5wg3ho8h" path="res://Settings/settings.gd" id="1_cdu2u"]
+
 [node name="Settings" type="Node2D" unique_id=2134886445]
+scale = Vector2(1.0357941, 1.0040486)
+script = ExtResource("1_cdu2u")
+
+[node name="Back" type="Button" parent="." unique_id=20061863]
+offset_left = 435.0
+offset_top = 519.0
+offset_right = 778.0
+offset_bottom = 597.0
+text = "Назад
+"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

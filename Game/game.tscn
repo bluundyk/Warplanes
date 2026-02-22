@@ -1,3 +1,9 @@
 [gd_scene format=3 uid="uid://dvjggx765yrw5"]
 
+[ext_resource type="PackedScene" uid="uid://cdgxgpbm8wj56" path="res://Plane/plane.tscn" id="1_bk3v5"]
+
 [node name="Game" type="Node2D" unique_id=822306003]
+
+[node name="Plane" parent="." unique_id=889820394 instance=ExtResource("1_bk3v5")]
+position = Vector2(214, 359)
+scale = Vector2(0.34464234, 0.46346474)

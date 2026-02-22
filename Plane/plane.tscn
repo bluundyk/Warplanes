@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://cdgxgpbm8wj56"]
+
+[ext_resource type="Script" uid="uid://bi4l2ctqp8lct" path="res://Plane/plane.gd" id="1_3yy4i"]
+[ext_resource type="Texture2D" uid="uid://cdvfb1p0ywmg1" path="res://Png/plane_model_animation.png" id="2_jqh3c"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cu827"]
+radius = 44.0
+height = 248.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18yty"]
+atlas = ExtResource("2_jqh3c")
+region = Rect2(0, 0, 387, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cght0"]
+atlas = ExtResource("2_jqh3c")
+region = Rect2(387, 0, 387, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72u6o"]
+atlas = ExtResource("2_jqh3c")
+region = Rect2(774, 0, 387, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nobf6"]
+atlas = ExtResource("2_jqh3c")
+region = Rect2(0, 200, 387, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wttrs"]
+atlas = ExtResource("2_jqh3c")
+region = Rect2(387, 200, 387, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r8t2q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18yty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cght0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72u6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nobf6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wttrs")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_g0f5a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_ac4o6"]
+resource_name = "collision_flying"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.46666667, 0.7, 0.8666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(3, 8), Vector2(-5, 16), Vector2(2, 27), Vector2(16, -43), Vector2(7, -47), Vector2(10, 5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v0of3"]
+_data = {
+&"RESET": SubResource("Animation_g0f5a"),
+&"collision_flying": SubResource("Animation_ac4o6")
+}
+
+[node name="Plane" type="CharacterBody2D" unique_id=889820394]
+script = ExtResource("1_3yy4i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=229698374]
+position = Vector2(3, 8)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_cu827")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1026820105]
+position = Vector2(-32, -5)
+scale = Vector2(1, 0.995)
+sprite_frames = SubResource("SpriteFrames_r8t2q")
+animation = &"flying"
+autoplay = "flying"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1491581966]
+libraries/ = SubResource("AnimationLibrary_v0of3")

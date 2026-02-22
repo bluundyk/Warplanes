@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dxh8fy71h0jd1"]
 
 [ext_resource type="Script" uid="uid://bp8cidk6p8wd8" path="res://MenuFolder/menu.gd" id="1_xu0io"]
+[ext_resource type="PackedScene" uid="uid://djfw15f03x7nb" path="res://background/background.tscn" id="2_gynnn"]
 
 [node name="Menu" type="Node2D" unique_id=1373165967]
 script = ExtResource("1_xu0io")
@@ -39,6 +40,9 @@ offset_bottom = 172.3125
 text = "W A R P L A N E S"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="bg" parent="." unique_id=400302099 instance=ExtResource("2_gynnn")]
+scroll_offset = Vector2(0, 0.5)
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
