@@ -7,7 +7,7 @@
 script = ExtResource("1_eva80")
 
 [node name="bgLayer" type="ParallaxLayer" parent="." unique_id=1472531354]
-motion_mirroring = Vector2(0, 720)
+motion_mirroring = Vector2(1285, 0)
 
 [node name="PurpleNebula011024x1024" type="Sprite2D" parent="bgLayer" unique_id=1513173991]
 texture_filter = 3
