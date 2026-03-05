@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://djfw15f03x7nb"]
 
-[ext_resource type="Script" uid="uid://cnjc087xpvtlf" path="res://background/background.gd" id="1_eva80"]
+[ext_resource type="Script" uid="uid://cnjc087xpvtlf" path="res://backgroundMenu/background.gd" id="1_eva80"]
 [ext_resource type="Texture2D" uid="uid://c8d8j08rlc0km" path="res://Large 1024x1024/Purple Nebula/Purple_Nebula_01-1024x1024.png" id="2_r0sni"]
 
 [node name="bg" type="ParallaxBackground" unique_id=400302099]
