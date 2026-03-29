@@ -3,17 +3,16 @@ extends Node
 @export var enemy_scene: PackedScene
 @export var spawn_interval: float = 2.0
 @export var spawn_delay: float = 1.0
-@export var max_enemies: int = 10  # Максимальное количество врагов
+@export var max_enemies: int = 10 
 
-var current_enemies: int = 0  # Текущее количество врагов
-var player: Node2D  # Ссылка на игрока
+var current_enemies: int = 0 
+var player: Node2D 
 
 @onready var background = $BackgroundGame
 @onready var game_area = get_viewport().get_visible_rect()
 
 func _ready():
-	# Находим игрока
-	player = get_node("../BackgroundGame/Plane")  # Путь к игроку
+	player = get_node("../BackgroundGame/Plane")
 	
 	if enemy_scene == null:
 		push_error("Enemy scene not assigned!")
@@ -34,38 +33,30 @@ func _start_spawning():
 	spawn_timer.start()
 
 func _spawn_enemy():
-	# Проверяем, не достигнут ли лимит врагов
 	if current_enemies >= max_enemies:
 		return
 	
 	if enemy_scene == null:
 		return
 	
-	# Создаем врага
 	var enemy = enemy_scene.instantiate()
 	add_child(enemy)
 	
-	# Устанавливаем размер врага (если нужно)
 	if enemy.has_method("set_size"):
-		enemy.set_size(Vector2(64, 64))  # Задай свой размер
+		enemy.set_size(Vector2(64, 64)) 
 	
-	# Передаем ссылку на игрока врагу
 	if enemy.has_method("set_player"):
 		enemy.set_player(player)
 	
-	# Позиция спавна справа за экраном
 	var viewport_rect = get_viewport().get_visible_rect()
 	var spawn_x = viewport_rect.end.x + 50
 	var spawn_y = randf_range(50, viewport_rect.end.y - 50)
 	
 	enemy.position = Vector2(spawn_x, spawn_y)
 	
-	# Увеличиваем счетчик врагов
 	current_enemies += 1
 	
-	# Подписываемся на сигнал смерти врага
 	enemy.tree_exited.connect(_on_enemy_destroyed)
 
 func _on_enemy_destroyed():
-	# Уменьшаем счетчик, когда враг уничтожен
 	current_enemies -= 1
