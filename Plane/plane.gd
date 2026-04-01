@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 signal health_changed(current_health, max_health)
-signal player_died
+signal coins_changed(current_coins)
 
 @onready var animated_sprite = $AnimatedSprite2D
 
@@ -14,13 +14,21 @@ var player_health: int = 100
 var max_health: int = 100
 var can_shoot = true
 var is_dead: bool = false
+
+var current_coins: int = 0
+var total_coins: int = 0
+
 var bullet_scene = preload("res://Bullet/bullet.tscn")
-var death_screen_scene = preload("res://deathScreen/death_screen.tscn")  # Путь к вашей сцене
+var death_screen_scene = preload("res://deathScreen/death_screen.tscn")
+
+const TOTAL_COINS_SAVE_PATH = "user://total_coins.save"
 
 func _ready():
 	animated_sprite.play("flying")
 	add_to_group("player")
-	print("Player ready! Health: ", player_health)
+	load_total_coins()
+	coins_changed.emit(current_coins)
+	print("Player ready! Health: ", player_health, " | Total coins: ", total_coins)
 
 func _physics_process(delta):
 	if is_dead:
@@ -85,32 +93,55 @@ func get_health() -> int:
 func is_alive() -> bool:
 	return not is_dead
 
+func add_coin(amount: int = 1):
+	current_coins += amount
+	total_coins += amount
+	save_total_coins()
+	coins_changed.emit(current_coins)
+	print("Coin collected! This run: ", current_coins, " | Total: ", total_coins)
+
+func save_total_coins():
+	var file = FileAccess.open(TOTAL_COINS_SAVE_PATH, FileAccess.WRITE)
+	if file:
+		file.store_string(str(total_coins))
+		file.close()
+
+func load_total_coins():
+	if FileAccess.file_exists(TOTAL_COINS_SAVE_PATH):
+		var file = FileAccess.open(TOTAL_COINS_SAVE_PATH, FileAccess.READ)
+		if file:
+			var content = file.get_as_text()
+			total_coins = int(content)
+			file.close()
+	else:
+		total_coins = 0
+
 func die():
 	if is_dead:
 		return
 	
 	is_dead = true
-	player_died.emit()
 	
 	animated_sprite.play("death")
 	
 	print("GAME OVER!")
 	
 	velocity = Vector2.ZERO
-	
 	can_shoot = false
 	
 	await animated_sprite.animation_finished
-	
-	show_death_screen()
 	
 	var explosion_scene = preload("res://Effects/explosion.tscn")
 	if explosion_scene:
 		var explosion = explosion_scene.instantiate()
 		get_parent().add_child(explosion)
 		explosion.global_position = global_position
+	
+	show_death_screen()
 
 func show_death_screen():
 	var death_screen = death_screen_scene.instantiate()
 	get_tree().root.add_child(death_screen)
 	
+	if death_screen.has_method("show_game_over"):
+		death_screen.show_game_over(current_coins, total_coins)

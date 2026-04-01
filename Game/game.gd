@@ -3,10 +3,16 @@ extends Node2D
 @onready var hp_bar = $hpBar
 @onready var score_label = $ScoreLabel
 @onready var high_score_label = $HighScoreLabel
+@onready var coin_count_label = $UI/Control/CoinsContainer/CoinCount
 
 var score: float = 0
 var high_score: int = 0
+var current_coins: int = 0
+var total_coins: int = 0
 var is_game_over: bool = false
+
+const TOTAL_COINS_SAVE_PATH = "user://total_coins.save"
+const HIGH_SCORE_SAVE_PATH = "user://high_score.save"
 
 func _ready():
 	if hp_bar:
@@ -15,9 +21,15 @@ func _ready():
 		hp_bar.value = 100
 	
 	load_high_score()
+	load_total_coins()
 	update_score_display()
+	update_coins_display()
 	
-	print("Game started! Current high score: ", high_score)
+	var plane = $Plane
+	if plane:
+		plane.coins_changed.connect(_on_plane_coins_changed)
+	
+	print("Game started! High score: ", high_score, " | Total coins: ", total_coins)
 
 func _process(delta):
 	if is_game_over:
@@ -46,31 +58,60 @@ func update_score_display():
 	if high_score_label:
 		high_score_label.text = "Best: " + str(high_score)
 
+func update_coins_display():
+	if coin_count_label:
+		coin_count_label.text = str(current_coins)
+
+func _on_plane_coins_changed(coins: int):
+	current_coins = coins
+	update_coins_display()
+
+func add_coin(amount: int = 1):
+	current_coins += amount
+	total_coins += amount
+	update_coins_display()
+	save_total_coins()
+	print("Coin collected! This run: ", current_coins, " | Total: ", total_coins)
+
 func save_high_score():
-	var file = FileAccess.open("user://high_score.save", FileAccess.WRITE)
+	var file = FileAccess.open(HIGH_SCORE_SAVE_PATH, FileAccess.WRITE)
 	if file:
 		file.store_string(str(high_score))
 		file.close()
-		print("High score saved: ", high_score)
-	else:
-		print("ERROR: Could not save high score!")
 
 func load_high_score():
-	if FileAccess.file_exists("user://high_score.save"):
-		var file = FileAccess.open("user://high_score.save", FileAccess.READ)
+	if FileAccess.file_exists(HIGH_SCORE_SAVE_PATH):
+		var file = FileAccess.open(HIGH_SCORE_SAVE_PATH, FileAccess.READ)
 		if file:
 			var content = file.get_as_text()
 			high_score = int(content)
 			file.close()
-			print("High score loaded: ", high_score)
-		else:
-			print("ERROR: Could not load high score file")
 	else:
 		high_score = 0
-		print("No saved high score, starting from 0")
+
+func save_total_coins():
+	var file = FileAccess.open(TOTAL_COINS_SAVE_PATH, FileAccess.WRITE)
+	if file:
+		file.store_string(str(total_coins))
+		file.close()
+
+func load_total_coins():
+	if FileAccess.file_exists(TOTAL_COINS_SAVE_PATH):
+		var file = FileAccess.open(TOTAL_COINS_SAVE_PATH, FileAccess.READ)
+		if file:
+			var content = file.get_as_text()
+			total_coins = int(content)
+			file.close()
+	else:
+		total_coins = 0
 
 func game_over():
 	is_game_over = true
-	print("Game Over! Final score: ", int(score))
+	print("Game Over! Score: ", int(score), " | Coins this run: ", current_coins, " | Total coins: ", total_coins)
 	
-	update_score_display()
+	var game_over_layer = $GameOver
+	if game_over_layer and game_over_layer.has_method("show_game_over"):
+		game_over_layer.show_game_over(int(score), high_score, current_coins, total_coins)
+	else:
+		await get_tree().create_timer(2.0).timeout
+		get_tree().reload_current_scene()
