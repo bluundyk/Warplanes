@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal health_changed(current_health, max_health)
+signal player_died
 
 @onready var animated_sprite = $AnimatedSprite2D
 
@@ -14,6 +15,7 @@ var max_health: int = 100
 var can_shoot = true
 var is_dead: bool = false
 var bullet_scene = preload("res://Bullet/bullet.tscn")
+var death_screen_scene = preload("res://deathScreen/death_screen.tscn")  # Путь к вашей сцене
 
 func _ready():
 	animated_sprite.play("flying")
@@ -88,19 +90,27 @@ func die():
 		return
 	
 	is_dead = true
+	player_died.emit()
+	
+	animated_sprite.play("death")
+	
 	print("GAME OVER!")
 	
-	var game = get_parent()
-	if game and game.has_method("game_over"):
-		game.game_over()
+	velocity = Vector2.ZERO
+	
+	can_shoot = false
+	
+	await animated_sprite.animation_finished
+	
+	show_death_screen()
 	
 	var explosion_scene = preload("res://Effects/explosion.tscn")
 	if explosion_scene:
 		var explosion = explosion_scene.instantiate()
 		get_parent().add_child(explosion)
 		explosion.global_position = global_position
+
+func show_death_screen():
+	var death_screen = death_screen_scene.instantiate()
+	get_tree().root.add_child(death_screen)
 	
-	velocity = Vector2.ZERO
-	
-	await get_tree().create_timer(2.0).timeout
-	get_tree().reload_current_scene()

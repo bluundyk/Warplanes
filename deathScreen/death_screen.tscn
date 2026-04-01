@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://b4cwkf5rxnwox"]
+
+[ext_resource type="Script" uid="uid://fepai7dgm2ls" path="res://deathScreen/death_screen.gd" id="1_bvyep"]
+
+[node name="DeathScreen" type="Control" unique_id=899859554]
+layout_mode = 3
+anchor_right = 1.0020001
+anchor_bottom = 1.0
+offset_right = 0.4399414
+offset_bottom = -1.0
+script = ExtResource("1_bvyep")
+
+[node name="Panel" type="Panel" parent="." unique_id=1729891356]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.99600005
+offset_right = -2.0
+offset_bottom = -0.12402344
+
+[node name="Label" type="Label" parent="Panel" unique_id=2081328669]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 182.0
+offset_right = 765.0
+offset_bottom = 285.0
+theme_override_font_sizes/font_size = 36
+text = "Вы умерли
+"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Panel" unique_id=1830540268]
+layout_mode = 0
+offset_left = 389.0
+offset_top = 299.0
+offset_right = 566.0
+offset_bottom = 341.0
+theme_override_font_sizes/font_size = 24
+text = "Рестарт"
+
+[node name="Button2" type="Button" parent="Panel" unique_id=1023195062]
+layout_mode = 0
+offset_left = 653.0
+offset_top = 299.0
+offset_right = 836.0
+offset_bottom = 341.0
+theme_override_font_sizes/font_size = 24
+text = "Выход"
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Panel/Button2" to="." method="_on_main_menu_button_pressed"]

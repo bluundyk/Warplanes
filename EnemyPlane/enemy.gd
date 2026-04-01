@@ -7,9 +7,12 @@ extends CharacterBody2D
 
 var health: int
 var player: Node2D = null
+var is_dead: bool = false
 var can_shoot: bool = true
 var bullet_scene = preload("res://Bullet/bullet.tscn")
 var explosion_scene = preload("res://Effects/explosion.tscn")
+
+@onready var animated_sprite = $AnimatedSprite2D
 
 func _ready():
 	health = max_health
@@ -70,12 +73,33 @@ func _on_collision_area_entered(body):
 		die()
 
 func die():
+	if is_dead:
+		return
+	
+	is_dead = true
+	
 	print("Enemy destroyed!")
+	
+	set_collision_layer_value(1, false)
+	set_collision_mask_value(1, false)
+	
+	var area = $Area2D
+	if area:
+		area.monitoring = false
+		area.monitorable = false
+	
+	velocity = Vector2.ZERO
+	
+	can_shoot = false
 	
 	if explosion_scene:
 		var explosion = explosion_scene.instantiate()
 		get_parent().add_child(explosion)
 		explosion.global_position = global_position
+	
+	if animated_sprite:
+		animated_sprite.play("death")
+		await animated_sprite.animation_finished
 	
 	queue_free()
 
