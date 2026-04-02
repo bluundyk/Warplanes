@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cqi45m5ihyvd4"]
+
+[ext_resource type="Script" uid="uid://cuehsv5pyehpy" path="res://LevelSelestionMenu/SelectionLVL.gd" id="1_cgj0s"]
+[ext_resource type="Texture2D" uid="uid://nk6qi1j5seb1" path="res://Large 1024x1024/back.jpg" id="2_f4rvi"]
+[ext_resource type="Texture2D" uid="uid://58o8c632i4qm" path="res://Large 1024x1024/line.jpg" id="3_x0ni3"]
+
+[node name="LevelSelection" type="Node2D" unique_id=118568580]
+script = ExtResource("1_cgj0s")
+
+[node name="Back" type="Sprite2D" parent="." unique_id=1238023608]
+position = Vector2(639.99994, 359.99997)
+scale = Vector2(1.2499999, 1.1764705)
+texture = ExtResource("2_f4rvi")
+
+[node name="Line" type="Sprite2D" parent="." unique_id=294694649]
+position = Vector2(640, 62.5)
+scale = Vector2(1.25, 0.6127451)
+texture = ExtResource("3_x0ni3")
+
+[node name="Level" type="Button" parent="." unique_id=527038679]
+custom_minimum_size = Vector2(400, 100)
+offset_left = 420.0
+offset_top = 305.0
+offset_right = 820.0
+offset_bottom = 405.0
+action_mode = 0
+text = "Космос"
+
+[node name="Quit" type="Button" parent="." unique_id=2115095115]
+custom_minimum_size = Vector2(320, 60)
+offset_left = 246.0
+offset_top = 567.0
+offset_right = 589.0
+offset_bottom = 645.0
+text = "Назад
+"
+
+[node name="Name" type="Label" parent="." unique_id=639505365]
+custom_minimum_size = Vector2(320, 60)
+offset_left = 450.0
+offset_top = 25.0
+offset_right = 793.0
+offset_bottom = 89.3125
+text = "ВЫБОР УРОВНЯ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Level" to="." method="_on_level_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
