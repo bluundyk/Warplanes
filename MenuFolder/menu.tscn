@@ -2,11 +2,22 @@
 
 [ext_resource type="Script" uid="uid://bp8cidk6p8wd8" path="res://MenuFolder/menu.gd" id="1_xu0io"]
 [ext_resource type="PackedScene" uid="uid://cxnpqtxy8qujc" path="res://parallaxBackgrounds/backgroundNight/parallax_background.tscn" id="2_gynnn"]
+[ext_resource type="Texture2D" uid="uid://c8awj66eajexy" path="res://title/title.png" id="2_vr8tf"]
+[ext_resource type="Texture2D" uid="uid://cj822i4hbeaui" path="res://buttons/normal_state.png" id="3_ewtf2"]
+[ext_resource type="Texture2D" uid="uid://c8cvlwd3jqdx8" path="res://buttons/hover_state.png" id="4_0pwif"]
+[ext_resource type="Texture2D" uid="uid://ctskl63t4r155" path="res://buttons/pressed_state.png" id="4_uxk6b"]
+[ext_resource type="FontFile" uid="uid://kt8qoi6274fo" path="res://fonts/EpilepsySans.ttf" id="6_uxk6b"]
 
 [node name="Menu" type="Node2D" unique_id=1373165967]
 script = ExtResource("1_xu0io")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1963807956]
+position = Vector2(650, 153)
+scale = Vector2(0.6434295, 0.6434295)
+texture = ExtResource("2_vr8tf")
+
 [node name="Play" type="Button" parent="." unique_id=1825282311]
+visible = false
 custom_minimum_size = Vector2(320, 60)
 offset_left = 448.0
 offset_top = 305.0
@@ -15,6 +26,7 @@ offset_bottom = 383.0
 text = "Играть"
 
 [node name="Settings" type="Button" parent="." unique_id=1765997868]
+visible = false
 custom_minimum_size = Vector2(320, 60)
 offset_left = 448.0
 offset_top = 438.0
@@ -23,6 +35,7 @@ offset_bottom = 516.0
 text = "Настройки"
 
 [node name="Quit" type="Button" parent="." unique_id=957886667]
+visible = false
 custom_minimum_size = Vector2(320, 60)
 offset_left = 448.0
 offset_top = 567.0
@@ -32,6 +45,7 @@ text = "Выйти
 "
 
 [node name="GameName" type="Label" parent="." unique_id=2052450514]
+visible = false
 custom_minimum_size = Vector2(320, 60)
 offset_left = 448.0
 offset_top = 180.0
@@ -43,6 +57,87 @@ vertical_alignment = 1
 
 [node name="BackgroundNight" parent="." unique_id=1160065057 instance=ExtResource("2_gynnn")]
 
+[node name="TextureButton" type="TextureButton" parent="." unique_id=343964825]
+offset_left = 440.0
+offset_top = 305.0
+offset_right = 798.0
+offset_bottom = 382.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("3_ewtf2")
+texture_pressed = ExtResource("4_uxk6b")
+texture_hover = ExtResource("4_0pwif")
+
+[node name="Label" type="Label" parent="TextureButton" unique_id=1578849174]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.011173184
+anchor_right = -0.011173184
+offset_left = 4.0
+offset_right = 362.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_uxk6b")
+theme_override_font_sizes/font_size = 42
+text = "ИГРАТЬ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton2" type="TextureButton" parent="." unique_id=1713670653]
+offset_left = 440.0
+offset_top = 439.0
+offset_right = 798.0
+offset_bottom = 516.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("3_ewtf2")
+texture_pressed = ExtResource("4_uxk6b")
+texture_hover = ExtResource("4_0pwif")
+
+[node name="Label" type="Label" parent="TextureButton2" unique_id=1980737072]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.011173184
+anchor_right = -0.011173184
+offset_left = 4.0
+offset_right = 362.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_uxk6b")
+theme_override_font_sizes/font_size = 42
+text = "НАСТРОЙКИ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton3" type="TextureButton" parent="." unique_id=1157596395]
+offset_left = 440.0
+offset_top = 568.0
+offset_right = 798.0
+offset_bottom = 645.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("3_ewtf2")
+texture_pressed = ExtResource("4_uxk6b")
+texture_hover = ExtResource("4_0pwif")
+
+[node name="Label" type="Label" parent="TextureButton3" unique_id=1759574966]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.011173184
+anchor_right = -0.011173184
+offset_left = 4.0
+offset_right = 362.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_uxk6b")
+theme_override_font_sizes/font_size = 42
+text = "ВЫЙТИ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="TextureButton2" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="TextureButton3" to="." method="_on_quit_pressed"]

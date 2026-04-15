@@ -2,11 +2,16 @@
 
 [ext_resource type="Script" uid="uid://bs6rlsx73vqqx" path="res://UpgradeSelectionMenu/SelectionUPGRD.gd" id="1_ui6l5"]
 [ext_resource type="Texture2D" uid="uid://nk6qi1j5seb1" path="res://Large 1024x1024/back.jpg" id="2_brejs"]
-[ext_resource type="Texture2D" uid="uid://58o8c632i4qm" path="res://Large 1024x1024/line.jpg" id="3_mgmav"]
+[ext_resource type="Texture2D" uid="uid://c8pp1xol2icyi" path="res://Large 1024x1024/line.jpg" id="3_mgmav"]
 [ext_resource type="Texture2D" uid="uid://b1hxpd5trpwnr" path="res://Plane/attackAnimation.png" id="3_x2xt3"]
 [ext_resource type="Texture2D" uid="uid://ca6747wqv2bfo" path="res://Plane/plane_animation_destroy.png" id="4_am6iq"]
 [ext_resource type="Texture2D" uid="uid://cmjch8wre8akf" path="res://Plane/flyingAnimation.png" id="5_brejs"]
 [ext_resource type="Texture2D" uid="uid://bfthbncod03hq" path="res://Coin/texture_coin.png" id="6_am6iq"]
+[ext_resource type="Texture2D" uid="uid://cj822i4hbeaui" path="res://buttons/normal_state.png" id="8_a5hei"]
+[ext_resource type="Texture2D" uid="uid://ctskl63t4r155" path="res://buttons/pressed_state.png" id="9_54s3m"]
+[ext_resource type="Texture2D" uid="uid://c8cvlwd3jqdx8" path="res://buttons/hover_state.png" id="10_tp0oe"]
+[ext_resource type="FontFile" uid="uid://kt8qoi6274fo" path="res://fonts/EpilepsySans.ttf" id="11_fmwdh"]
+[ext_resource type="PackedScene" uid="uid://cxnpqtxy8qujc" path="res://parallaxBackgrounds/backgroundNight/parallax_background.tscn" id="12_54s3m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nobf6"]
 atlas = ExtResource("3_x2xt3")
@@ -191,6 +196,7 @@ animations = [{
 script = ExtResource("1_ui6l5")
 
 [node name="Back" type="Sprite2D" parent="." unique_id=1709700289]
+visible = false
 position = Vector2(639.99994, 359.99997)
 scale = Vector2(1.2499999, 1.1764705)
 texture = ExtResource("2_brejs")
@@ -201,6 +207,7 @@ scale = Vector2(1.25, 0.6127451)
 texture = ExtResource("3_mgmav")
 
 [node name="Levels" type="Button" parent="." unique_id=923596040]
+visible = false
 custom_minimum_size = Vector2(320, 60)
 offset_left = 650.0
 offset_top = 567.0
@@ -209,6 +216,7 @@ offset_bottom = 645.0
 text = "Выбор уровня"
 
 [node name="Quit" type="Button" parent="." unique_id=1066363165]
+visible = false
 custom_minimum_size = Vector2(320, 60)
 offset_left = 246.0
 offset_top = 567.0
@@ -249,5 +257,61 @@ offset_bottom = 90.0
 theme_override_font_sizes/font_size = 40
 text = "0"
 
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1532348745]
+offset_left = 640.0
+offset_top = 568.0
+offset_right = 998.0
+offset_bottom = 645.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("8_a5hei")
+texture_pressed = ExtResource("9_54s3m")
+texture_hover = ExtResource("10_tp0oe")
+
+[node name="Label" type="Label" parent="TextureButton" unique_id=402877746]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.011173184
+anchor_right = -0.011173184
+offset_left = 4.0
+offset_right = 362.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_fmwdh")
+theme_override_font_sizes/font_size = 42
+text = "ВЫБОР УРОВНЯ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton2" type="TextureButton" parent="." unique_id=474652992]
+offset_left = 240.0
+offset_top = 568.0
+offset_right = 598.0
+offset_bottom = 645.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("8_a5hei")
+texture_pressed = ExtResource("9_54s3m")
+texture_hover = ExtResource("10_tp0oe")
+
+[node name="Label" type="Label" parent="TextureButton2" unique_id=1633201281]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.011173184
+anchor_right = -0.011173184
+offset_left = 4.0
+offset_right = 362.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_fmwdh")
+theme_override_font_sizes/font_size = 42
+text = "НАЗАД"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackgroundNight" parent="." unique_id=1160065057 instance=ExtResource("12_54s3m")]
+
 [connection signal="pressed" from="Levels" to="." method="_on_levels_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_levels_pressed"]
+[connection signal="pressed" from="TextureButton2" to="." method="_on_quit_pressed"]
