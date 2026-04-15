@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cyhjvky31lx4a" path="res://Plane/flyingAnimation.png" id="2_3yy4i"]
 [ext_resource type="Texture2D" uid="uid://di2kpvwxyb7ju" path="res://Plane/attackAnimation.png" id="2_jqh3c"]
 [ext_resource type="Texture2D" uid="uid://ca6747wqv2bfo" path="res://Plane/plane_animation_destroy.png" id="3_cu827"]
+[ext_resource type="Texture2D" uid="uid://df70065ewubvi" path="res://Gadgets/a9fdb9e0-f0b8-4907-961d-66b970db4527.png" id="5_18yty"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cu827"]
 radius = 44.0
@@ -204,3 +205,8 @@ animation = &"death"
 autoplay = "flying"
 frame = 12
 frame_progress = 1.0
+
+[node name="ShieldSprite" type="Sprite2D" parent="." unique_id=799635919]
+position = Vector2(-17.500004, 4.999999)
+scale = Vector2(0.7343358, 0.70734596)
+texture = ExtResource("5_18yty")

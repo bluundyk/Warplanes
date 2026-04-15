@@ -12,6 +12,7 @@ var shooter_type: String = "player":
 				$AnimatedSprite2D.play("fly")
 			else:
 				$AnimatedSprite2D.play("flyForEnemy")
+				add_to_group("enemy_bullet")
 
 const EXPLOSION_SCENE = preload("res://Effects/explosion.tscn")
 
@@ -39,14 +40,11 @@ func hit_target(target):
 		target.take_damage(damage)
 	
 	create_explosion()
-	
 	queue_free()
 
 func create_explosion():
 	if EXPLOSION_SCENE:
 		var explosion = EXPLOSION_SCENE.instantiate()
-		
 		get_parent().add_child(explosion)
-		
 		explosion.global_position = global_position
 		print("Пуля " + shooter_type + " взорвалась.")

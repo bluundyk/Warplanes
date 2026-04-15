@@ -20,6 +20,9 @@ func _ready():
 	print("Enemy ready! Health: ", health)
 
 func _physics_process(delta):
+	if is_dead:
+		return
+	
 	if player == null:
 		player = get_tree().get_first_node_in_group("player")
 	
@@ -34,6 +37,9 @@ func _physics_process(delta):
 		queue_free()
 
 func shoot():
+	if is_dead:
+		return
+	
 	can_shoot = false
 	
 	var bullet = bullet_scene.instantiate()
@@ -52,10 +58,13 @@ func shoot():
 	
 	var random_delay = randf_range(shoot_delay_min, shoot_delay_max)
 	await get_tree().create_timer(random_delay).timeout
-	if is_instance_valid(self):
+	if is_instance_valid(self) and not is_dead:
 		can_shoot = true
 
 func take_damage(amount: int):
+	if is_dead:
+		return
+	
 	health -= amount
 	print("Enemy took damage! Health: ", health, "/", max_health)
 	
@@ -63,6 +72,9 @@ func take_damage(amount: int):
 		die()
 
 func _on_collision_area_entered(body):
+	if is_dead:
+		return
+	
 	if body.is_in_group("player"):
 		print("Enemy collided with player!")
 		
@@ -89,7 +101,6 @@ func die():
 		area.monitorable = false
 	
 	velocity = Vector2.ZERO
-	
 	can_shoot = false
 	
 	if explosion_scene:
@@ -102,7 +113,3 @@ func die():
 		await animated_sprite.animation_finished
 	
 	queue_free()
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	pass

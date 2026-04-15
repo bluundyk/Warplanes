@@ -7,10 +7,10 @@ scale = Vector2(1.0357941, 1.0040486)
 script = ExtResource("1_cdu2u")
 
 [node name="Back" type="Button" parent="." unique_id=20061863]
-offset_left = 752.07996
-offset_top = 791.7944
-offset_right = 1095.08
-offset_bottom = 869.7944
+offset_left = 426.72574
+offset_top = 510.93146
+offset_right = 769.7257
+offset_bottom = 588.93146
 text = "Назад
 "
 

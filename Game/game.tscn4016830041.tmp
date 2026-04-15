@@ -12,9 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bvamnd8ajs1h2" path="res://hpBar/71772b47-bc4d-4683-94e8-f3f879e43eca.png" id="10_4lqr4"]
 [ext_resource type="Script" uid="uid://3qj7632xhg2j" path="res://Game/coin_spawner.gd" id="10_7gi1t"]
 [ext_resource type="PackedScene" uid="uid://chnsqbr1i7uxr" path="res://Coin/coin.tscn" id="11_fsxsm"]
-[ext_resource type="Texture2D" uid="uid://bd2rb5vo8350w" path="res://Gadgets/shield.png" id="11_qlwvw"]
 [ext_resource type="Script" uid="uid://dyudoefh0v1ne" path="res://Game/gadget_spawner.gd" id="12_glinl"]
-[ext_resource type="Texture2D" uid="uid://cfvw1rqcpny3k" path="res://Gadgets/slow_time.png" id="12_rpdke"]
 [ext_resource type="PackedScene" uid="uid://cr5wj01701a8o" path="res://Gadgets/gadget.tscn" id="13_72g0p"]
 
 [node name="Game" type="Node2D" unique_id=822306003]
@@ -89,40 +87,6 @@ offset_bottom = 650.34076
 value = 100.0
 nine_patch_stretch = true
 texture_progress = ExtResource("10_4lqr4")
-
-[node name="ShieldContainer" type="HBoxContainer" parent="UI/Control" unique_id=2117178658]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 656.0
-offset_right = 275.0
-offset_bottom = 912.0
-scale = Vector2(0.17220119, 0.1743877)
-theme_override_constants/separation = 5
-
-[node name="ShieldIcon" type="TextureRect" parent="UI/Control/ShieldContainer" unique_id=2036400309]
-layout_mode = 2
-texture = ExtResource("11_qlwvw")
-stretch_mode = 4
-
-[node name="ShieldTimerLabel" type="Label" parent="UI/Control/ShieldContainer" unique_id=1663154064]
-layout_mode = 2
-theme_override_font_sizes/font_size = 96
-
-[node name="SlowTimeContainer" type="HBoxContainer" parent="UI/Control" unique_id=171040429]
-layout_mode = 0
-offset_left = 110.00001
-offset_top = 655.0
-offset_right = 743.0
-offset_bottom = 1085.0
-scale = Vector2(0.0800006, 0.11999513)
-
-[node name="SlowTimeIcon" type="TextureRect" parent="UI/Control/SlowTimeContainer" unique_id=1691804928]
-layout_mode = 2
-texture = ExtResource("12_rpdke")
-
-[node name="SlowTimeTimerLabel" type="Label" parent="UI/Control/SlowTimeContainer" unique_id=98414334]
-layout_mode = 2
-theme_override_font_sizes/font_size = 156
 
 [node name="CoinSpawner" type="Node2D" parent="." unique_id=1963938524]
 script = ExtResource("10_7gi1t")
