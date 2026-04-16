@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://bs6rlsx73vqqx" path="res://UpgradeSelectionMenu/SelectionUPGRD.gd" id="1_ui6l5"]
 [ext_resource type="Texture2D" uid="uid://nk6qi1j5seb1" path="res://Large 1024x1024/back.jpg" id="2_brejs"]
-[ext_resource type="Texture2D" uid="uid://c8pp1xol2icyi" path="res://Large 1024x1024/line.jpg" id="3_mgmav"]
+[ext_resource type="Texture2D" uid="uid://58o8c632i4qm" path="res://Large 1024x1024/line.jpg" id="3_mgmav"]
 [ext_resource type="Texture2D" uid="uid://b1hxpd5trpwnr" path="res://Plane/attackAnimation.png" id="3_x2xt3"]
 [ext_resource type="Texture2D" uid="uid://ca6747wqv2bfo" path="res://Plane/plane_animation_destroy.png" id="4_am6iq"]
 [ext_resource type="Texture2D" uid="uid://cmjch8wre8akf" path="res://Plane/flyingAnimation.png" id="5_brejs"]
 [ext_resource type="Texture2D" uid="uid://bfthbncod03hq" path="res://Coin/texture_coin.png" id="6_am6iq"]
-[ext_resource type="Texture2D" uid="uid://cj822i4hbeaui" path="res://buttons/normal_state.png" id="8_a5hei"]
-[ext_resource type="Texture2D" uid="uid://ctskl63t4r155" path="res://buttons/pressed_state.png" id="9_54s3m"]
-[ext_resource type="Texture2D" uid="uid://c8cvlwd3jqdx8" path="res://buttons/hover_state.png" id="10_tp0oe"]
+[ext_resource type="Texture2D" uid="uid://cqdp75en5h8ii" path="res://buttons/normal_state.png" id="8_a5hei"]
+[ext_resource type="Texture2D" uid="uid://mcxhgbh0s6l" path="res://buttons/pressed_state.png" id="9_54s3m"]
+[ext_resource type="Texture2D" uid="uid://bsc8m5luc75uv" path="res://buttons/hover_state.png" id="10_tp0oe"]
 [ext_resource type="FontFile" uid="uid://kt8qoi6274fo" path="res://fonts/EpilepsySans.ttf" id="11_fmwdh"]
 [ext_resource type="PackedScene" uid="uid://cxnpqtxy8qujc" path="res://parallaxBackgrounds/backgroundNight/parallax_background.tscn" id="12_54s3m"]
 
@@ -249,7 +249,7 @@ offset_right = 147.0
 offset_bottom = 135.0
 texture = ExtResource("6_am6iq")
 
-[node name="CoinCount" type="Label" parent="." unique_id=1086762693]
+[node name="TotalCoins" type="Label" parent="." unique_id=1086762693]
 offset_left = 164.0
 offset_top = 35.0
 offset_right = 187.0
