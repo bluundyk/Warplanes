@@ -8,7 +8,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cu827"]
 radius = 44.0
-height = 248.0
+height = 282.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nobf6"]
 atlas = ExtResource("2_jqh3c")
@@ -198,8 +198,8 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_cu827")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1026820105]
-position = Vector2(-21.071396, -11.262507)
-scale = Vector2(1.0546434, 1.0546428)
+position = Vector2(-50.904655, -4.2625027)
+scale = Vector2(1.0704768, 0.9879762)
 sprite_frames = SubResource("SpriteFrames_r8t2q")
 animation = &"attack"
 autoplay = "flying"

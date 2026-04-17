@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://cqi45m5ihyvd4"]
 
 [ext_resource type="Script" uid="uid://cuehsv5pyehpy" path="res://LevelSelestionMenu/SelectionLVL.gd" id="1_cgj0s"]
-[ext_resource type="Texture2D" uid="uid://nk6qi1j5seb1" path="res://Large 1024x1024/back.jpg" id="2_f4rvi"]
-[ext_resource type="Texture2D" uid="uid://c8pp1xol2icyi" path="res://Large 1024x1024/line.jpg" id="3_x0ni3"]
 [ext_resource type="Texture2D" uid="uid://cj822i4hbeaui" path="res://buttons/normal_state.png" id="4_05bhj"]
 [ext_resource type="Texture2D" uid="uid://ctskl63t4r155" path="res://buttons/pressed_state.png" id="5_jcis8"]
 [ext_resource type="Texture2D" uid="uid://c8cvlwd3jqdx8" path="res://buttons/hover_state.png" id="6_ncg0r"]
@@ -12,51 +10,22 @@
 [node name="LevelSelection" type="Node2D" unique_id=118568580]
 script = ExtResource("1_cgj0s")
 
-[node name="Back" type="Sprite2D" parent="." unique_id=1238023608]
-visible = false
-position = Vector2(639.99994, 359.99997)
-scale = Vector2(1.2499999, 1.1764705)
-texture = ExtResource("2_f4rvi")
-
-[node name="Line" type="Sprite2D" parent="." unique_id=294694649]
-position = Vector2(640, 62.5)
-scale = Vector2(1.25, 0.6127451)
-texture = ExtResource("3_x0ni3")
-
-[node name="Level" type="Button" parent="." unique_id=527038679]
-visible = false
-custom_minimum_size = Vector2(400, 100)
-offset_left = 420.0
-offset_top = 305.0
-offset_right = 820.0
-offset_bottom = 405.0
-action_mode = 0
-text = "Космос"
-
-[node name="Quit" type="Button" parent="." unique_id=2115095115]
-visible = false
-custom_minimum_size = Vector2(320, 60)
-offset_left = 246.0
-offset_top = 567.0
-offset_right = 589.0
-offset_bottom = 645.0
-text = "Назад
-"
-
 [node name="Name" type="Label" parent="." unique_id=639505365]
 custom_minimum_size = Vector2(320, 60)
-offset_left = 450.0
-offset_top = 25.0
-offset_right = 793.0
-offset_bottom = 89.3125
+offset_left = 424.0
+offset_top = 32.0
+offset_right = 856.0
+offset_bottom = 97.0
+theme_override_fonts/font = ExtResource("7_5ub0p")
+theme_override_font_sizes/font_size = 65
 text = "ВЫБОР УРОВНЯ"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=1004234293]
-offset_left = 431.0
+offset_left = 232.0
 offset_top = 320.0
-offset_right = 789.0
+offset_right = 590.0
 offset_bottom = 397.0
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -105,9 +74,34 @@ text = "НАЗАД"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TextureButton3" type="TextureButton" parent="." unique_id=1508878068]
+offset_left = 703.0
+offset_top = 320.0
+offset_right = 1061.0
+offset_bottom = 397.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource("4_05bhj")
+texture_pressed = ExtResource("5_jcis8")
+texture_hover = ExtResource("6_ncg0r")
+
+[node name="Label" type="Label" parent="TextureButton3" unique_id=1060454272]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.011173184
+anchor_right = -0.011173184
+offset_left = 4.0
+offset_right = 362.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_5ub0p")
+theme_override_font_sizes/font_size = 42
+text = "СПОКОЙСТВИЕ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BackgroundNight" parent="." unique_id=1160065057 instance=ExtResource("8_jcis8")]
 
-[connection signal="pressed" from="Level" to="." method="_on_level_pressed"]
-[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="TextureButton" to="." method="_on_level_pressed"]
 [connection signal="pressed" from="TextureButton2" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="TextureButton3" to="." method="_on_level2_pressed"]

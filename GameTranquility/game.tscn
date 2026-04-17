@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://ccqco51nyy585"]
+
+[ext_resource type="Script" uid="uid://bvya41wppuqs2" path="res://GameTranquility/game.gd" id="1_hoye2"]
+[ext_resource type="PackedScene" uid="uid://cdgxgpbm8wj56" path="res://Plane/plane.tscn" id="2_b5031"]
+[ext_resource type="Texture2D" uid="uid://dxamwgwaosxcv" path="res://hpBar/under.png" id="3_574qo"]
+[ext_resource type="Texture2D" uid="uid://c1ox4g3ymej7v" path="res://hpBar/over.png" id="4_chm26"]
+[ext_resource type="Texture2D" uid="uid://dy7e5cq6mlnjy" path="res://hpBar/progress.png" id="5_ohcei"]
+[ext_resource type="Script" uid="uid://c6jvkjh3nchc5" path="res://GameTranquility/node_2d.gd" id="6_nv04n"]
+[ext_resource type="PackedScene" uid="uid://dqwyg2gwaxv0p" path="res://EnemyPlane/enemy.tscn" id="7_gtlk5"]
+[ext_resource type="Texture2D" uid="uid://bfthbncod03hq" path="res://Coin/texture_coin.png" id="8_pt8x3"]
+[ext_resource type="Texture2D" uid="uid://bvamnd8ajs1h2" path="res://hpBar/71772b47-bc4d-4683-94e8-f3f879e43eca.png" id="9_dryfa"]
+[ext_resource type="Texture2D" uid="uid://c7dm45vnir8yh" path="res://Gadgets/shield.png" id="10_jqp3c"]
+[ext_resource type="Texture2D" uid="uid://caquf7hc0ralf" path="res://Gadgets/slow_time.png" id="11_a5pay"]
+[ext_resource type="Script" uid="uid://crbvu13evblf8" path="res://GameTranquility/coin_spawner.gd" id="12_xaful"]
+[ext_resource type="PackedScene" uid="uid://chnsqbr1i7uxr" path="res://Coin/coin.tscn" id="13_rxqch"]
+[ext_resource type="Script" uid="uid://ccda5gd4upmhu" path="res://GameTranquility/gadget_spawner.gd" id="14_t6sae"]
+[ext_resource type="PackedScene" uid="uid://cr5wj01701a8o" path="res://Gadgets/gadget.tscn" id="15_kjgpq"]
+[ext_resource type="PackedScene" uid="uid://c30ouxiq7e2sx" path="res://parallaxBackgrounds/backgroundTranquility/parallax_background.tscn" id="16_tsy4v"]
+
+[node name="Game" type="Node2D" unique_id=822306003]
+script = ExtResource("1_hoye2")
+
+[node name="Plane" parent="." unique_id=889820394 instance=ExtResource("2_b5031")]
+position = Vector2(214, 359)
+scale = Vector2(0.34464234, 0.46346474)
+
+[node name="hpBar" type="TextureProgressBar" parent="." unique_id=100463065]
+offset_left = 451.0
+offset_top = 645.0
+offset_right = 850.0
+offset_bottom = 719.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("3_574qo")
+texture_over = ExtResource("4_chm26")
+texture_progress = ExtResource("5_ohcei")
+
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=1737919499]
+script = ExtResource("6_nv04n")
+enemy_scene = ExtResource("7_gtlk5")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1635429729]
+offset_left = 17.0
+offset_top = 16.0
+offset_right = 102.0
+offset_bottom = 64.875
+
+[node name="HighScoreLabel" type="Label" parent="." unique_id=1129564630]
+offset_left = 1183.0
+offset_top = 15.0
+offset_right = 1258.0
+offset_bottom = 58.125
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1404386196]
+
+[node name="Control" type="Control" parent="UI" unique_id=849302522]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CoinsContainer" type="HBoxContainer" parent="UI/Control" unique_id=596837146]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 5.0000005
+offset_right = 390.0
+offset_bottom = 133.0
+scale = Vector2(0.4, 0.4)
+theme_override_constants/separation = 15
+
+[node name="CoinIcon" type="TextureRect" parent="UI/Control/CoinsContainer" unique_id=261057425]
+layout_mode = 2
+texture = ExtResource("8_pt8x3")
+
+[node name="CoinCount" type="Label" parent="UI/Control/CoinsContainer" unique_id=194462234]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="ShieldBar" type="TextureProgressBar" parent="UI/Control" unique_id=2015608537]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 600.0
+offset_right = 789.0
+offset_bottom = 650.34076
+value = 100.0
+nine_patch_stretch = true
+texture_progress = ExtResource("9_dryfa")
+
+[node name="ShieldContainer" type="HBoxContainer" parent="UI/Control" unique_id=2117178658]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 656.0
+offset_right = 275.0
+offset_bottom = 912.0
+scale = Vector2(0.17220119, 0.1743877)
+theme_override_constants/separation = 5
+
+[node name="ShieldIcon" type="TextureRect" parent="UI/Control/ShieldContainer" unique_id=2036400309]
+layout_mode = 2
+texture = ExtResource("10_jqp3c")
+stretch_mode = 4
+
+[node name="ShieldTimerLabel" type="Label" parent="UI/Control/ShieldContainer" unique_id=1663154064]
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+
+[node name="SlowTimeContainer" type="HBoxContainer" parent="UI/Control" unique_id=171040429]
+layout_mode = 0
+offset_left = 110.00001
+offset_top = 655.0
+offset_right = 743.0
+offset_bottom = 1085.0
+scale = Vector2(0.0800006, 0.11999513)
+
+[node name="SlowTimeIcon" type="TextureRect" parent="UI/Control/SlowTimeContainer" unique_id=1691804928]
+layout_mode = 2
+texture = ExtResource("11_a5pay")
+
+[node name="SlowTimeTimerLabel" type="Label" parent="UI/Control/SlowTimeContainer" unique_id=98414334]
+layout_mode = 2
+theme_override_font_sizes/font_size = 156
+
+[node name="CoinSpawner" type="Node2D" parent="." unique_id=1963938524]
+script = ExtResource("12_xaful")
+coin_scene = ExtResource("13_rxqch")
+
+[node name="GadgetSpawner" type="Node2D" parent="." unique_id=134785893]
+script = ExtResource("14_t6sae")
+gadget_scene = ExtResource("15_kjgpq")
+
+[node name="ParallaxBackground" parent="." unique_id=335413917 instance=ExtResource("16_tsy4v")]
